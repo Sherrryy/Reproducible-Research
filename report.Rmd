@@ -1,0 +1,65 @@
+---
+title: "My fancypants report"
+author: "Sherry Khann"
+date: "6/24/2021"
+output: html_document
+bibliography: bibliography.bib
+---
+
+```{r, include=FALSE, echo = TRUE, eval = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE)
+```
+
+```{r, echo = FALSE}
+
+library(dplyr)
+library(ggplot2)
+
+smoke <- c(TRUE, TRUE, TRUE, TRUE, TRUE,
+           TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE)
+age <- c(35, 21, 20, 48, 20, 20, 22, 19, 19, 20, 19, 18, 24, 22, 22, 19, 21, 19, 21)
+people <- data.frame(smoke, age)
+people <- people %>%
+  filter(age <= 34)
+obs <- nrow(people)
+
+```
+
+# Introduction
+
+## Background
+
+### Smoking: is it good for you
+
+
+# **Methods**
+
+My esteemed colleagues and I surveyed `r obs` people. The average age of the participants was `r round(mean(age))` years. That is very _young_. **Right?**
+
+# **Results!**
+
+The below chart shows the age of the participants
+
+```{r, echo = FALSE}
+ggplot(data = people, 
+       aes(x = age,
+           y = smoke)) +
+  geom_boxplot() 
+
+```
+
+# Conclusion 
+
+Some people have smoked. Others have not. Bohat Fit Scene Boss!
+
+# BiblioG
+
+Lots of people smoke. Everyone knows that smoking is bad for you. And everyone knows that math is very easy. Drs probably shouldn't smoke on call. 
+[@Rudd2014].
+[@Peterman2005]
